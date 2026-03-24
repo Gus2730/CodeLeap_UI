@@ -11,9 +11,10 @@ export function MainScreen() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-[800px]">
-        <header className="bg-primary px-6 py-7">
-          <h1 className="text-[22px] font-bold text-primary-foreground">
+      <div className="mx-auto max-w-[900px]">
+        {/* Header with gradient, cyan top border, and shadow */}
+        <header className="relative border-t-4 border-cyan-500 bg-gradient-to-r from-slate-900 to-slate-800 px-8 py-6 shadow-lg">
+          <h1 className="text-4xl font-bold tracking-tighter text-white font-display">
             CodeLeap Network
           </h1>
         </header>
