@@ -4,3 +4,5 @@ node_modules/
 next-env.d.ts
 next.config.mjs
 package-lock.json
+build.log
+*.log

@@ -38,23 +38,40 @@ export function PostsList({ refreshTrigger }: PostsListProps) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Spinner className="h-8 w-8 text-primary" />
+        <Spinner className="h-8 w-8 text-cyan-500" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="rounded-2xl border border-border bg-card p-6 text-center">
-        <p className="text-destructive">Failed to load posts. Please try again.</p>
+      <div className="rounded-lg border-2 border-red-500 bg-red-50 p-6 text-center">
+        <h3 className="mb-2 text-lg font-bold font-sans text-red-700">
+          Oops, something went wrong
+        </h3>
+        <p className="font-serif text-red-600">Failed to load posts. Please try again.</p>
       </div>
     );
   }
 
   if (sortedPosts.length === 0) {
     return (
-      <div className="rounded-2xl border border-border bg-card p-6 text-center">
-        <p className="text-muted-foreground">No posts yet. Be the first to post!</p>
+      <div className="flex flex-col items-center justify-center py-20 px-6 rounded-lg border-2 border-dashed border-cyan-500 bg-gradient-to-br from-slate-50 to-slate-100">
+        {/* Cyan accent decoration */}
+        <div className="mb-6 h-1 w-16 bg-gradient-to-r from-cyan-500 to-cyan-300 rounded-full" />
+        
+        {/* Large typography - IBM Plex Mono */}
+        <h2 className="text-center text-4xl font-bold font-sans text-slate-900 mb-3 tracking-tight">
+          No posts yet
+        </h2>
+        
+        {/* Encouraging message in serif body font */}
+        <p className="text-center text-lg font-serif text-slate-600 max-w-md leading-relaxed mb-8">
+          Be the first to share something amazing with the CodeLeap community. Start the conversation!
+        </p>
+        
+        {/* Bottom accent */}
+        <div className="h-1 w-12 bg-gradient-to-r from-cyan-300 to-cyan-500 rounded-full" />
       </div>
     );
   }
@@ -62,13 +79,20 @@ export function PostsList({ refreshTrigger }: PostsListProps) {
   return (
     <>
       <div className="flex flex-col gap-6">
-        {sortedPosts.map((post) => (
-          <PostCard
+        {sortedPosts.map((post, index) => (
+          <div
             key={post.id}
-            post={post}
-            onEdit={setPostToEdit}
-            onDelete={setPostToDelete}
-          />
+            className="animate-card-fade-in"
+            style={{
+              animationDelay: `${index * 50}ms`,
+            }}
+          >
+            <PostCard
+              post={post}
+              onEdit={setPostToEdit}
+              onDelete={setPostToDelete}
+            />
+          </div>
         ))}
       </div>
 
